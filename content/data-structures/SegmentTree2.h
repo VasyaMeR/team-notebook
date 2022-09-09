@@ -115,17 +115,6 @@ public:
         return result;
     }
 
-    ll get_sum_pos(ll l, ll r, ll sum) const {
-        if(l == r)
-            return l;
-        ll m = (l + r) / 2;
-        if(sum <= get_left_val())
-            return left->get_sum_pos(l, m, sum);
-        if(!right)
-            return r;
-        return right->get_sum_pos(m + 1, r, sum - get_left_val());
-    }
-
     T get(ll l, ll r, ll L, ll R) {
         if(r < L || R < l)
             return default_value;
@@ -176,10 +165,6 @@ public:
     T get(ll tree_id, ll L, ll R) {
         return roots[tree_id]->get(l, r, L, R);
     }
-
-    ll get_sum_pos(ll tree_id, ll sum) {
-        return roots[tree_id]->get_sum_pos(l, r, sum);
-    }
 };
 
 template<class T>
@@ -198,16 +183,6 @@ T my_min(const T& l, const T& r) {
 }
 
 template<class T>
-T my_or(const T& l, const T& r) {
-    return l | r;
-}
-
-template<class T>
-T my_and(const T& l, const T& r) {
-    return l & r;
-}
-
-template<class T>
 void set_value(T& var, const T& value) {
     var = value;
 }
@@ -219,12 +194,6 @@ void add_value(T& var, const T& value) {
 
 template<class T, T default_value>
 using SumTree = Tree<T, default_value, sum<T>, add_value<T>>;
-
-template<class T, T default_value>
-using MaxTree = Tree<T, default_value, my_max<T>, set_value<T>>;
-
-template<class T, T default_value>
-using MinTree = Tree<T, default_value, my_min<T>, set_value<T>>;
 
 template<class T, T default_value>
 using PersistentSumTree = PersistentTree<T, default_value, sum<T>, set_value<T>>;
