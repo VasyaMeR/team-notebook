@@ -126,7 +126,7 @@ public:
         if(!left) return right->get(m + 1, r, L, R);
         if(!right) return left->get(l, m, L, R);
 #endif
-        return merge_value(left->get(l, m, L, R), right->get(m + 1, r, L, R));
+        return merge_value(get_left_node()->get(l, m, L, R), get_right_node()->get(m + 1, r, L, R));
     }
 };
 
