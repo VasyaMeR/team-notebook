@@ -178,11 +178,6 @@ T my_max(const T& l, const T& r) {
 }
 
 template<class T>
-T my_min(const T& l, const T& r) {
-    return min(l, r);
-}
-
-template<class T>
 void set_value(T& var, const T& value) {
     var = value;
 }
