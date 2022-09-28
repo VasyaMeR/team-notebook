@@ -3,14 +3,10 @@
  * Date: 2022-09-09
  * License: CC0
  * Source: folklore
- * Description: Customizable tree + persistent tree.
+ * Description: Customizable segment tree node.
  * Time: update - O(\log N), get - O(\log N)
  * Status: -
  */
-#pragma once
-
-#define OPTIMIZE_DREVO_MEMORY_R
-#define OPTIMIZE_DREVO_MEMORY_G
 
 template<class T, T default_value, T (*merge_value)(const T&, const T&), void (*update_value)(T&, const T&)>
 class Node {
@@ -55,8 +51,7 @@ protected:
         return right->value;
     }
 
-    void recalc() {
-#ifdef OPTIMIZE_DREVO_MEMORY_R
+    void recalculate() {
         if(!left && !right) {
             this->value = default_value;
             return;
@@ -69,7 +64,6 @@ protected:
             this->value = merge_value(get_left_node()->value, default_value);
             return;
         }
-#endif
         this->value = merge_value(get_left_node()->value, get_right_node()->value);
     }
 
@@ -94,8 +88,9 @@ protected:
                 this->right->upd(m + 1, r, pos, move(new_value));
             }
         }
-        recalc();
+        recalculate();
     }
+
 public:
     explicit Node(): value(default_value) {}
 
@@ -106,7 +101,7 @@ public:
         }
         ll m = (l + r) / 2;
         (pos <= m ? get_left_node()->upd(l, m, pos, move(new_value)) : get_right_node()->upd(m + 1, r, pos, move(new_value)));
-        recalc();
+        recalculate();
     }
 
     Node* upd_acreate(ll l, ll r, ll pos, T new_value) {
@@ -121,74 +116,11 @@ public:
         if(L <= l && r <= R)
             return this->value;
         ll m = (l + r) / 2;
-#ifdef OPTIMIZE_DREVO_MEMORY_G
+
         if(!left && !right) return this->value;
         if(!left) return right->get(m + 1, r, L, R);
         if(!right) return left->get(l, m, L, R);
-#endif
+
         return merge_value(get_left_node()->get(l, m, L, R), get_right_node()->get(m + 1, r, L, R));
     }
 };
-
-template<class T, T default_value, T (*merge_value)(const T&, const T&), void (*update_value)(T&, const T&)>
-class Tree {
-private:
-    ll l, r;
-    Node<T, default_value, merge_value, update_value>* root = nullptr;
-public:
-    Tree(ll l, ll r): l(l), r(r), root(new Node<T, default_value, merge_value, update_value>()) {}
-
-    void upd(ll pos, T value) {
-        root->upd(l, r, pos, move(value));
-    }
-
-    T get(ll L, ll R) {
-        return root->get(l, r, L, R);
-    }
-};
-
-template<class T, T default_value, T (*merge_value)(const T&, const T&), void (*update_value)(T&, const T&)>
-class PersistentTree {
-private:
-    ll l, r;
-    vec<Node<T, default_value, merge_value, update_value>*> roots;
-public:
-    PersistentTree(ll l, ll r): l(l), r(r) {
-        roots.push_back(new Node<T, default_value, merge_value, update_value>());
-    }
-
-    size_t upd_acreate(ll pos, T value) {
-        roots.push_back(roots[roots.size() - 1]->upd_acreate(l, r, pos, move(value)));
-        return roots.size() - 1;
-    }
-
-    T get(ll tree_id, ll L, ll R) {
-        return roots[tree_id]->get(l, r, L, R);
-    }
-};
-
-template<class T>
-T sum(const T& l, const T& r) {
-    return l + r;
-}
-
-template<class T>
-T my_max(const T& l, const T& r) {
-    return max(l, r);
-}
-
-template<class T>
-void set_value(T& var, const T& value) {
-    var = value;
-}
-
-template<class T>
-void add_value(T& var, const T& value) {
-    var = var + value;
-}
-
-template<class T, T default_value>
-using SumTree = Tree<T, default_value, sum<T>, add_value<T>>;
-
-template<class T, T default_value>
-using PersistentSumTree = PersistentTree<T, default_value, sum<T>, set_value<T>>;
