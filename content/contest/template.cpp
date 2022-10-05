@@ -1,7 +1,8 @@
 // #pragma comment(linker, "/stack:200000000")
 // #pragma GCC optimize("Ofast")
 // #pragma GCC optimize("O3,unroll-loops")
-// #pragma GCC target("sse,sse2,sse3,ssse3,sse4,avx2")
+// #pragma GCC target("sse,sse2,sse3,ssse3,sse4")
+// #pragma GCC target("avx2,bmi,bmi2,popcnt,lzcnt")
 
 // #define _GLIBCXX_DEBUG
 // #define _GLIBCXX_DEBUG_PEDANTIC
