@@ -63,7 +63,7 @@ vector<int> suffix_arrays(string s) {
 			cnt[c[k][pn[i]]]++;
 		}
 
-		for (int i = 0; i < alphabet; i++)
+		for (int i = 1; i < n; i++)
 			cnt[i] += cnt[i - 1];
 
 		for (int i = n - 1; i >= 0; i--) {
