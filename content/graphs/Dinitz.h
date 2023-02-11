@@ -32,7 +32,7 @@ struct Edge {
 	}
 };
 
-vector<int> dinitz_bfs(int v, const graph<Edge*>>& g) {
+vector<int> dinitz_bfs(int v, const graph<Edge*>& g) {
 	int n = g.size();
 	vector<int> dist(n, n + 100);
 	dist[v] = 0;
@@ -57,7 +57,7 @@ vector<int> dinitz_bfs(int v, const graph<Edge*>>& g) {
 }
 vector<bool> blocked;
 vector<int> dist;
-int dinitz_dfs(int v, int F, graph<Edge*>>& g, int t) {
+int dinitz_dfs(int v, int F, graph<Edge*>& g, int t) {
 	if (v == t || F == 0)
 		return F;
 	bool all_blocked = true;
