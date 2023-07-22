@@ -14,8 +14,8 @@ vector<complex<double>> fft(vector<complex<double>> a, bool inverse = true) {
             nepar[i / 2] = a[i];
     }
 
-    par = fft(par);
-    nepar = fft(nepar);
+    par = fft(par, inverse);
+    nepar = fft(nepar, inverse);
     vector<complex<double>> ans(n);
     for (int i = 0; i < n; i++) {
         auto x = complex(cos(2 * i * PI / n), sin(2 * i * PI / n));
