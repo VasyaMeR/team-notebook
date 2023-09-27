@@ -1,3 +1,12 @@
+/**
+ * Author: Merenych Vasyl
+ * Date: 2022-11-28
+ * License: CC0
+ * Source: folklore
+ * Description: FFT implementation
+ * Time: (n + m) * log(n + m) 
+ * Status: -
+ */
 
 vector<complex<double>> fft(vector<complex<double>> a, bool inverse = true) {
     int n = a.size();

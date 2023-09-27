@@ -1,3 +1,14 @@
+/**
+ * Author: Merenych Vasyl
+ * Date: 2023-01-20
+ * License: CC0
+ * Source: folklore
+ * Description: Fast pair matching algorithm
+ * Time: O(n * (n + m))
+ * Status: -
+ */
+
+
 graph<int> g;
 vector<int> mt, used, rev_mt;
 bool dfs(int v) {

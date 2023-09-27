@@ -1,3 +1,13 @@
+/**
+ * Author: Merenych Vasyl
+ * Date: 2023-01-20
+ * License: CC0
+ * Source: folklore
+ * Description: 2-sat implementation
+ * Time: O(n)
+ * Status: -
+ */
+
 struct TwoSat {
     graph<int> g, rev;
     vector<int> used, order, comp, ans;

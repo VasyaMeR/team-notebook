@@ -1,3 +1,13 @@
+/**
+ * Author: Merenych Vasyl
+ * Date: 2022-11-28
+ * License: CC0
+ * Source: folklore
+ * Description: NNT implementation by modulo 998244353
+ * Time: (n + m) * log(n + m) 
+ * Status: -
+ */
+
 const int root = 31;
 const int root_1 = fast_pow(root, MOD - 2, MOD);
 const int root_pw = 1 << 23;
