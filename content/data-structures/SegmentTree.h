@@ -1,31 +1,46 @@
 /**
- * Author: Dmytro Mayor
+ * Author: Vasyl Merenych
  * Date: 2022-09-09
  * License: CC0
- * Source: folklore
- * Description: Customizable segment tree
+ * Source: peltorator
+ * Description: Segment tree from below.
  * Time: update - O(\log N), get - O(\log N)
  * Status: -
  */
 
-#include <SegmentTreeNode.h>
+struct SegmentTree {
+	static const int N = (1 << 20);
+	array<int, N> tree;
+	SegmentTree() {
+		tree.fill(0);
+	}
 
-template<class T, T default_value, T (*merge_value)(const T&, const T&), void (*update_value)(T&, const T&)>
-class Tree {
-private:
-    ll l, r;
-    Node<T, default_value, merge_value, update_value>* root = nullptr;
-public:
-    Tree(ll l, ll r): l(l), r(r), root(new Node<T, default_value, merge_value, update_value>()) {}
+	void update(int pos, int val) {
+		pos += N;
+		tree[pos] = val;
+		pos >>= 1;
+		while (pos > 0) {
+			tree[pos] = tree[pos << 1] + tree[(pos << 1) | 1];
+			pos >>= 1;
+		}
+	}
 
-    void upd(ll pos, T value) {
-        root->upd(l, r, pos, move(value));
-    }
+	int get_sum(int l, int r) {
+		l += N;
+		r += N;
 
-    T get(ll L, ll R) {
-        return root->get(l, r, L, R);
-    }
+		int ans = 0;
+		while (l < r) {
+			if (l & 1) {
+				ans += tree[l++];
+			}
+			if ((r & 1) == 0) {
+				ans += tree[r--];
+			}
+
+			l >>= 1;
+			r >>= 1;
+		}
+		return ans;
+	}
 };
-
-template<class T, T default_value>
-using SumTree = Tree<T, default_value, sum<T>, add_value<T>>;
