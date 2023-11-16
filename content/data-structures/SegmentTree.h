@@ -9,7 +9,7 @@
  */
 
 struct SegmentTree {
-	static const int N = (1 << 20);
+	static const int N = (1 << 18);
 	array<int, N> tree;
 	SegmentTree() {
 		tree.fill(0);
@@ -28,18 +28,18 @@ struct SegmentTree {
 	int get_sum(int l, int r) {
 		l += N;
 		r += N;
+		r--;
 
 		int ans = 0;
 		while (l < r) {
 			if (l & 1) {
 				ans += tree[l++];
-			}
-			if ((r & 1) == 0) {
-				ans += tree[r--];
-			}
-
-			l >>= 1;
-			r >>= 1;
+		        }
+		        if (r & 1) {
+				ans += tree[--r];
+		        }
+		        l >>= 1;
+		        r >>= 1;
 		}
 		return ans;
 	}
