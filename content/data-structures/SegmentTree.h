@@ -28,7 +28,7 @@ struct SegmentTree {
 	int get_sum(int l, int r) {
 		l += N;
 		r += N;
-		r--;
+		r++;
 
 		int ans = 0;
 		while (l < r) {
