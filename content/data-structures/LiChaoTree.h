@@ -8,19 +8,17 @@
  * Status: -
  */
 
-struct line
-{
-	int k = 0;
-	int b = -INF;
+template<typename T> struct li_chao_tree {
+	const T MX = 1e9 + 100;
+	struct line
+	{
+		T k = 0;
+		T b = -INF;
 
-    int f(int x) const {
-        return k * x + b;
-    }
-};
-
-
-struct li_chao_tree {
-	const int MX = 1e9 + 100;
+		T f(T x) const {
+			return k * x + b;
+		}
+	};
 	struct node
 	{
 		line ln;
@@ -42,22 +40,22 @@ struct li_chao_tree {
 
 	node* root = new_node();
 
-	int get(int x) {
+	T get(T x) {
 		return get(root, 0, MX, x);
 	}
     void add(line ln) {
         return add(root, 0, MX, ln);
     }
 
-	int get(node*& v, int l, int r, int x) {
+	T get(node*& v, T l, T r, T x) {
 		if (!v) {
 			return -INF;
 		}
-		int ans = v->ln.f(x);
+		T ans = v->ln.f(x);
 		if (r == l) {
 			return ans;
 		}
-		int mid = (r + l) / 2;
+		T mid = (r + l) / 2;
 		if (x <= mid) {
 			return max(ans, get(v->left, l, mid, x));
 		} else {
@@ -65,11 +63,11 @@ struct li_chao_tree {
         }
 	}
 
-    void add(node*& v, int l, int r, line ln) {
+    void add(node*& v, T l, T r, line ln) {
         if (!v) {
             v = new_node();
         }
-        int m = (r + l) / 2;
+        T m = (r + l) / 2;
         bool left = v->ln.f(l) < ln.f(l);
 		bool md = v->ln.f(m) < ln.f(m);
         if (md)
