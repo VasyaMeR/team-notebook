@@ -3,19 +3,21 @@
  * Date: 2022-09-09
  * License: CC0
  * Source: peltorator
- * Description: Segment tree from below.
+ * Description: Segment tree, update(+=) at element, sum at segment. R is excluded.
  * Time: update - O(\log N), get - O(\log N)
  * Status: -
  */
 
-struct SegmentTree {
+#include <array>
+
+template<typename T> struct segment_tree {
 	static const int N = (1 << 18);
-	array<int, N> tree;
+	std::array<T, 2 * N> tree;
 	SegmentTree() {
-		tree.fill(0);
+		tree.fill(T());
 	}
 
-	void update(int pos, int val) {
+	void update(int pos, T val) {
 		pos += N;
 		tree[pos] = val;
 		pos >>= 1;
@@ -25,21 +27,20 @@ struct SegmentTree {
 		}
 	}
 
-	int get_sum(int l, int r) {
+	T get_sum(T l, T r) {
 		l += N;
 		r += N;
-		r++;
 
-		int ans = 0;
+		T ans = 0;
 		while (l < r) {
 			if (l & 1) {
 				ans += tree[l++];
-		        }
-		        if (r & 1) {
+			}
+			if (r & 1) {
 				ans += tree[--r];
-		        }
-		        l >>= 1;
-		        r >>= 1;
+			}
+			l >>= 1;
+			r >>= 1;
 		}
 		return ans;
 	}
