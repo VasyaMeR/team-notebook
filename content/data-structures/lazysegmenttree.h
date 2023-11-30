@@ -54,7 +54,7 @@ template<typename T> struct lazy_segment_tree {
 		}
 		int mid = (tl + tr) / 2;
 		update(2 * v, tl, mid, l, r, value);
-		update(2 * v + 1, mid + 1, tr, l, r, value);
+		update(2 * v + 1, mid, tr, l, r, value);
 
 		tree[v].sum = (tree[2 * v].sum + tree[2 * v + 1].sum);
 	}
@@ -68,7 +68,7 @@ template<typename T> struct lazy_segment_tree {
 		}
 		int mid = (tl + tr) / 2;
 		auto left = get(2 * v, tl, mid, l, r);
-		auto right = get(2 * v + 1, mid + 1, tr, l, r);
+		auto right = get(2 * v + 1, mid, tr, l, r);
 
 		return node {
 			.sum = (left.sum + right.sum),
