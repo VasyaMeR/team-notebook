@@ -1,0 +1,36 @@
+data structures:
+	- segment tree
+		- common(peltorator) 🆘
+		- lazy 🆘
+		- persistent 🆘
+	- fenwick tree
+		- common(atcoder) ✅
+		- 2d
+	- li-chao tree 🆘
+	- xor-bor 🆘
+math:
+	- convolutions:
+		- fft (atcoder)
+		- fft by module (atcoder)
+	- xor basis
+	- mod int (atcoder)
+	- floor_sum (atcoder)
+graphs:
+	- flows
+		- max flow (atcoder)
+		- min cost flow (atcoder)
+	- scc (atcoder)
+	- dsu(atcoder) ✅
+	- matching
+		- khun(aslandukov) 🆘
+	- 2-sat 🆘
+numeric:
+	- polard-rho 🆘
+	- euclidean algorithm
+	- chinese remainder theorem  (atcoder)
+strings:
+	- hashs 🆘
+	- z_algorithm (atcoder)
+	- suffix array (atcoder)
+	- lcp array (atcoder)
+	
