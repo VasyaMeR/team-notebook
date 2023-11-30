@@ -3,48 +3,49 @@
  * Date: 2022-12-05
  * License: CC0
  * Source: folklore
- * Description: Zero-indexed sum-tree with update on segment. Bounds are inclusive to the left and to the right.
+ * Description: Segment tree, update(+=) at segment, sum at segment. R is excluded.
  * Time: update - O(\log N), get - O(\log N)
  * Status: -
  */
 
-#include <vector>
-#include <iostream>
 #include <array>
 
-struct segment_tree {
+template<typename T> struct lazy_segment_tree {
 	static const int N = 1e5 + 100;
-	static const int NONE = -1;
+	static const T NONE = 0;
 
 	struct node{
-		int mn = INT_MAX;
-		int mx = INT_MIN;
-		int promise = NONE;
+		T sum = 0;
+		T promise = NONE;
 	};
-	array<node, 4 * N> tree; 
+	std::array<node, 4 * N> tree; 
 
-	void update(int l, int r, int val) {
-		update(1, 0, N - 1, l, r, val);
+	void update(int l, int r, T val) {
+		update(1, 0, N, l, r, val);
 	}
 
 	node get(int l, int r) {
-		return get(1, 0, N - 1, l, r);
+		return get(1, 0, N, l, r);
+	}
+
+	node get(int pos) {
+		return get(1, 0, N, pos, pos + 1);
 	}
 
 	void push(int v, int l, int r) {
 		if (tree[v].promise == NONE)
 			return;
-		tree[v].mn = tree[v].mx = tree[v].promise;
+		tree[v].sum += tree[v].promise * (r - l);
 		if (l != r) {
-			tree[2 * v].promise = tree[v].promise;
-			tree[2 * v + 1].promise = tree[v].promise;	
+			tree[2 * v].promise += tree[v].promise;
+			tree[2 * v + 1].promise += tree[v].promise;	
 		}
 		tree[v].promise = NONE;
 	}
 
-	void update(int v, int tl, int tr, int l, int r, int value) {
+	void update(int v, int tl, int tr, int l, int r, T value) {
 		push(v, tl, tr);
-		if (l > tr || tl > r)
+		if (l >= tr || tl >= r)
 			return;
 		if (l <= tl && tr <= r) {
 			tree[v].promise = value;
@@ -55,13 +56,12 @@ struct segment_tree {
 		update(2 * v, tl, mid, l, r, value);
 		update(2 * v + 1, mid + 1, tr, l, r, value);
 
-		tree[v].mx = max(tree[2 * v].mx, tree[2 * v + 1].mx);
-		tree[v].mn = min(tree[2 * v].mn, tree[2 * v + 1].mn);
+		tree[v].sum = (tree[2 * v].sum + tree[2 * v + 1].sum);
 	}
 
 	node get(int v, int tl, int tr, int l, int r) {
 		push(v, tl, tr);
-		if (l > tr || tl > r)
+		if (l >= tr || tl >= r)
 			return node();
 		if (l <= tl && tr <= r) {
 			return tree[v];
@@ -71,8 +71,7 @@ struct segment_tree {
 		auto right = get(2 * v + 1, mid + 1, tr, l, r);
 
 		return node {
-			.mn = min(left.mn, right.mn),
-			.mx = max(left.mx, right.mx),
+			.sum = (left.sum + right.sum),
 			.promise = NONE
 		};
 	}

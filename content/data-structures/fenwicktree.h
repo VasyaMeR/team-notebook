@@ -5,7 +5,7 @@
  * Source: AtCoder
  * Description: Fenwick Tree, update(+=) at element, sum at segment. R is excluded.
  * Time: update - O(\log N), get - O(\log N)
- * Status: -
+ * Status: Tested
  */
 
 #include <cassert>
