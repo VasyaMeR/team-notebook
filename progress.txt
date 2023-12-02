@@ -18,7 +18,7 @@ math:
 graphs:
 	- flows
 		- max flow (atcoder)
-		- min cost flow (atcoder)
+		- min cost flow (atcoder) 🆘
 	- scc (atcoder)
 	- dsu(atcoder) ✅
 	- matching
