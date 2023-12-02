@@ -24,6 +24,7 @@ graphs:
 	- matching
 		- khun(aslandukov) 🆘
 	- 2-sat 🆘
+	- bridges
 numeric:
 	- polard-rho 🆘
 	- euclidean algorithm
