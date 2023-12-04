@@ -8,16 +8,21 @@
  * Status: -
  */
 
-struct TwoSat {
+#include <vector>
+
+template<typename T>
+using graph = std::vector<std::vector<T>>;
+
+struct two_sat {
     graph<int> g, rev;
-    vector<int> used, order, comp, ans;
+    std::vector<int> used, order, comp, ans;
     int n;
     
-    TwoSat(int _n) {
-        this->n = _n;
+    two_sat(int _n): n(_n) {
         g.assign(2 * n, {});
         rev.assign(2 * n, {});
     }
+    
     void add_edge(int u, int v) {
         g[u].push_back(v);
         rev[v].push_back(u);
