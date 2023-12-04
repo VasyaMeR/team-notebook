@@ -13,8 +13,8 @@ math:
 		- fft (atcoder)
 		- fft by module (atcoder)
 	- xor basis 🆘
-	- mod int (atcoder)
-	- floor_sum (atcoder)
+	- mod int (atcoder) 🆘
+	- floor_sum (atcoder) 🆘
 graphs:
 	- flows
 		- max flow (atcoder) 🆘
