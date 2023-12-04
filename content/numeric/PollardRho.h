@@ -1,12 +1,14 @@
 /**
- * Author: 
- * Date: 
+ * Author: Vasyl Merenych
+ * Date: 2023-12-04
  * License: CC0
  * Source: cp-algorithms
  * Description: Finds divider of N.
  * Time: O(N ^ (1/4) * log(N))
  * Status: -
  */
+
+#include<numeric>
 
 long long mult(long long a, long long b, long long mod) {
     return (__int128)a * b % mod;
@@ -24,7 +26,7 @@ long long rho(long long n, long long x0=2, long long c=1) {
         x = f(x, c, n);
         y = f(y, c, n);
         y = f(y, c, n);
-        g = gcd(abs(x - y), n);
+        g = std::gcd(abs(x - y), n);
     }
     return g;
 }

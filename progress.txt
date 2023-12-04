@@ -12,7 +12,7 @@ math:
 	- convolutions:
 		- fft (atcoder)
 		- fft by module (atcoder)
-	- xor basis
+	- xor basis 🆘
 	- mod int (atcoder)
 	- floor_sum (atcoder)
 graphs:
