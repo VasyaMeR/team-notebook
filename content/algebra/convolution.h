@@ -18,8 +18,13 @@
 #include "primitiveroot.h"
 
 namespace internal {
+constexpr int countr_zero_constexpr(unsigned int n) {
+	int x = 0;
+	while (!(n & (1 << x))) x++;
+	return x;
+}
 
-template <class mint, int g = primitive_root<mint::mod()>>
+template <class mint, int g>
 struct fft_info {
     static constexpr int rank2 = countr_zero_constexpr(mint::mod() - 1);
     std::array<mint, rank2 + 1> root;   // root[i]^(2^i) == 1
@@ -59,13 +64,17 @@ struct fft_info {
         }
     }
 };
-
-template <class mint>
+unsigned int bit_ceil(unsigned int n) {
+    unsigned int x = 1;
+    while (x < (unsigned int)(n)) x *= 2;
+    return x;
+}
+template <class mint, int g>
 void butterfly(std::vector<mint>& a) {
     int n = int(a.size());
-    int h = internal::countr_zero((unsigned int)n);
+    int h = __builtin_ctz((unsigned int)n);
 
-    static const fft_info<mint> info;
+    static const fft_info<mint, g> info;
 
     int len = 0;  // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed
     while (len < h) {
@@ -114,12 +123,12 @@ void butterfly(std::vector<mint>& a) {
     }
 }
 
-template <class mint>
+template <class mint, int g>
 void butterfly_inv(std::vector<mint>& a) {
     int n = int(a.size());
-    int h = internal::countr_zero((unsigned int)n);
+    int h = __builtin_ctz((unsigned int)n);
 
-    static const fft_info<mint> info;
+    static const fft_info<mint, g> info;
 
     int len = h;  // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed
     while (len) {
@@ -198,18 +207,18 @@ std::vector<mint> convolution_naive(const std::vector<mint>& a,
     return ans;
 }
 
-template <class mint>
+template <class mint, int g>
 std::vector<mint> convolution_fft(std::vector<mint> a, std::vector<mint> b) {
     int n = int(a.size()), m = int(b.size());
-    int z = (int)internal::bit_ceil((unsigned int)(n + m - 1));
+    int z = (int)bit_ceil((unsigned int)(n + m - 1));
     a.resize(z);
-    internal::butterfly(a);
+    internal::butterfly<mint, g>(a);
     b.resize(z);
-    internal::butterfly(b);
+    internal::butterfly<mint, g>(b);
     for (int i = 0; i < z; i++) {
         a[i] *= b[i];
     }
-    internal::butterfly_inv(a);
+    internal::butterfly_inv<mint, g>(a);
     a.resize(n + m - 1);
     mint iz = mint(z).inv();
     for (int i = 0; i < n + m - 1; i++) a[i] *= iz;
@@ -218,7 +227,8 @@ std::vector<mint> convolution_fft(std::vector<mint> a, std::vector<mint> b) {
 
 }  // namespace internal
 
-template <class mint>
+// g - primitive root of mint
+template <class mint, int g>
 std::vector<mint> convolution(const std::vector<mint>& a,
                               const std::vector<mint>& b) {
     int n = int(a.size()), m = int(b.size());
@@ -227,13 +237,14 @@ std::vector<mint> convolution(const std::vector<mint>& a,
     int z = (int)internal::bit_ceil((unsigned int)(n + m - 1));
     assert((mint::mod() - 1) % z == 0);
 
-    if (std::min(n, m) <= 60) return convolution_naive(a, b);
-    return internal::convolution_fft(a, b);
+    if (std::min(n, m) <= 60) return internal::convolution_naive(a, b);
+    return internal::convolution_fft<mint, g>(a, b);
 }
 
-template <unsigned int mod = 998244353, class T>
+// g - primitive root of mod
+template <unsigned int mod = 998244353, int g = 3, class T>
 std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {
-    using mint = mint<mod>;
+    using mint = modint<mod>;
 	int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
 
@@ -247,7 +258,7 @@ std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {
     for (int i = 0; i < m; i++) {
         b2[i] = mint(b[i]);
     }
-    auto c2 = convolution(a2, b2);
+    auto c2 = convolution<mint, g>(a2, b2);
     std::vector<T> c(n + m - 1);
     for (int i = 0; i < n + m - 1; i++) {
         c[i] = c2[i].val();
