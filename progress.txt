@@ -17,9 +17,9 @@ math:
 	- floor_sum (atcoder)
 graphs:
 	- flows
-		- max flow (atcoder)
+		- max flow (atcoder) 🆘
 		- min cost flow (atcoder) 🆘
-	- scc (atcoder)
+	- scc (atcoder) ?
 	- dsu(atcoder) ✅
 	- matching
 		- khun(aslandukov) 🆘
