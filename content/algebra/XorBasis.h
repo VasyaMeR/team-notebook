@@ -8,19 +8,54 @@
  * Status: -
  */
 
-array<int, 61> basis; // basis[i] -> element with smallest set bit equal to i 
-int sz; // Current size of the basis
 
-bool insert_vector(int mask) {
-	for (int i = 0; i <= 60; i++) {
-		if ((mask & (1ll << i)) == 0)
-			continue;
-		if (!basis[i]) {
-			basis[i] = mask;
-			sz++;
-			return true;
-		}
-		mask ^= basis[i];
+#include <vector>
+
+template<typename T = int, int max_bit = 31>
+struct xor_basis
+{
+	std::vector<T> basis; // basis[i] -> element with smallest set bit equal to i 
+	int sz; // Current size of the basis
+
+	xor_basis() {
+		basis.assign(max_bit);
 	}
-	return false;
-}
+
+	bool insert(T val) {
+		for (int i = 0; i < max_bit; i++) {
+			if ((val >> i)&1) == 0)
+				continue;
+			if (!basis[i]) {
+				basis[i] = val;
+				sz++;
+				return true;
+			}
+			val ^= basis[i];
+		}
+		return false;
+	}
+
+	bool contains(T val) {
+		for (int i = 0; i < max_bit; i++) {
+			if ((val >> i)&1) == 0)
+				continue;
+			if (!basis[i]) {
+				return false;
+			}
+			val ^= basis[i];
+		}
+		return true;
+	}
+
+	T max_element() { // not-sure
+		T val = 0;
+		for (int i = max_bit - 1; i >= 0; i--) {
+			if ((val >> i)&1) == 0)
+				continue;
+			if (basis[i]) {
+				val ^= basis[i];
+			}
+		}
+		return val;
+	}
+};
