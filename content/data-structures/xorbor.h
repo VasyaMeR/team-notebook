@@ -31,7 +31,7 @@ struct xor_bor_node {
 			return;
 		int bit = (mask>>k)&1;
 
-		assert(mp[bit] && mp[bit].cnt > 0)
+		assert(mp[bit] && mp[bit]->cnt > 0);
 		mp[bit]->remove(mask, k - 1);
 	}
 
@@ -40,7 +40,7 @@ struct xor_bor_node {
 			return 0;
 		int bit = (mask>>k)&1;
 		int cur= bit;
-		if (mp[!bit] && mp[!bit].cnt)
+		if (mp[!bit] && mp[!bit]->cnt)
 			cur = !bit;
 		return ((cur^bit) << k) | mp[cur]->get(mask, k - 1);
 	}
