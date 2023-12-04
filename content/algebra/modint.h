@@ -11,23 +11,24 @@
 #include <utility>
 
 template <int m>
-struct mint {
+struct modint {
+	using mint = modint<m>;
 public:
-    static int mod() { return m; }
-    static mint raw(int v) {
-        mint x;
+    static constexpr int mod() { return m; }
+    static modint raw(int v) {
+        modint x;
         x._v = v;
         return x;
     }
 
-    mint() : _v(0) {}
+    modint() : _v(0) {}
     template <class T>
-    static_modint(T v) {
+    modint(T v) {
         long long x = (long long)(v % (long long)(umod()));
         if (x < 0) x += umod();
         _v = (unsigned int)(x);
     }
-
+	
     unsigned int val() const { return _v; }
 
     mint& operator++() {
