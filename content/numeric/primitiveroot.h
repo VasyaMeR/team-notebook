@@ -8,7 +8,7 @@
  * Status: -
  */
 
-long long safe_mod(long long x, long long m) {
+constexpr long long safe_mod(long long x, long long m) {
     x %= m;
     if (x < 0) x += m;
     return x;
@@ -60,3 +60,5 @@ int primitive_root(int m) {
         if (ok) return g;
     }
 }
+
+template <int m> constexpr int primitive_root = primitive_root(m);

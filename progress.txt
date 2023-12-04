@@ -27,6 +27,7 @@ graphs:
 	- bridges
 numeric:
 	- polard-rho 🆘
+	- primitive root (atcoder)  🆘
 	- euclidean algorithm
 	- chinese remainder theorem  (atcoder)
 strings:
