@@ -10,8 +10,8 @@ data structures:
 	- xor-bor 🆘
 math:
 	- convolutions:
-		- fft (atcoder)
-		- fft by module (atcoder)
+		- fft (atcoder) 🆘
+		- fft by module (atcoder) 🆘
 	- xor basis 🆘
 	- mod int (atcoder) 🆘
 	- floor_sum (atcoder) 🆘
