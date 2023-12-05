@@ -3,7 +3,7 @@ data structures:
 		- common(peltorator) 🆘
 		- lazy 🆘
 		- persistent 🆘
-	- fenwick tree
+	- Fenwick tree
 		- common(atcoder) ✅
 		- 2d
 	- li-chao tree 🆘
@@ -11,10 +11,10 @@ data structures:
 math:
 	- convolutions:
 		- fft (atcoder) 🆘
-		- fft by module (atcoder) 🆘
+		- fft by module (atcoder) ✅
 	- xor basis 🆘
-	- mod int (atcoder) 🆘
-	- floor_sum (atcoder) 🆘
+	- mod int (atcoder) ✅
+	- floor_sum (atcoder) ✅
 graphs:
 	- flows
 		- max flow (atcoder) 🆘
@@ -26,10 +26,10 @@ graphs:
 	- 2-sat 🆘
 	- bridges
 numeric:
-	- polard-rho 🆘
+	- pollard-rho 🆘
 	- primitive root (atcoder)  🆘
 	- euclidean algorithm
-	- chinese remainder theorem  (atcoder)
+	- Chinese remainder theorem  (atcoder)
 strings:
 	- hashs 🆘
 	- z_algorithm (atcoder)
