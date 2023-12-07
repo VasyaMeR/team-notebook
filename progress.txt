@@ -8,6 +8,7 @@ data structures:
 		- 2d
 	- li-chao tree 🆘
 	- xor-bor 🆘
+	- sparse table
 math:
 	- convolutions:
 		- fft (atcoder) 🆘
@@ -24,7 +25,8 @@ graphs:
 	- matching
 		- khun(aslandukov) 🆘
 	- 2-sat 🆘
-	- bridges
+	- bridges 🆘
+	- articulation points 🆘
 numeric:
 	- pollard-rho 🆘
 	- primitive root (atcoder)  🆘
