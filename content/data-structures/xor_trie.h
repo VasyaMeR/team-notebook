@@ -3,16 +3,16 @@
  * Date: 2023-11-30
  * License: CC0
  * Source: folklore
- * Description: Binary bor for integer numbers. Get finds maximum xor of two numbers.
+ * Description: Binary t for integer numbers. Get finds maximum xor of two numbers.
  * Time: add - O(\log A), get - O(\log A)
  * Status: -
  */
 #include <cassert>
 #include<array>
 
-struct xor_bor_node {
+struct xor_trie_node {
 	int cnt = 0;
-	std::array<xor_bor_node*, 2> mp = {nullptr, nullptr};
+	std::array<xor_trie_node*, 2> mp = {nullptr, nullptr};
 
 	void add(int mask, int k = 30) {
 		cnt++;
@@ -21,7 +21,7 @@ struct xor_bor_node {
 		int bit = (mask>>k)&1;
 
 		if (!mp[bit])
-			mp[bit] = new xor_bor_node();
+			mp[bit] = new xor_trie_node();
 		mp[bit]->add(mask, k - 1);
 	}
 
