@@ -50,9 +50,7 @@ struct xor_basis
 	T max_element() { // not-sure
 		T val = 0;
 		for (int i = max_bit - 1; i >= 0; i--) {
-			if ((val >> i)&1) == 0)
-				continue;
-			if (basis[i]) {
+			if (basis[i] && !((val>>i)&1)) {
 				val ^= basis[i];
 			}
 		}
