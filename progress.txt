@@ -3,9 +3,10 @@ data structures:
 		- common(peltorator) 🆘
 		- lazy 🆘
 		- persistent 🆘
+		- 2d (peltorator) 🆘
 	- Fenwick tree
 		- common(atcoder) ✅
-		- 2d
+		- 2d  🆘
 	- li-chao tree 🆘
 	- xor-bor 🆘
 	- sparse table
