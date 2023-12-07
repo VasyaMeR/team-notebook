@@ -1,9 +1,9 @@
 
 template<int P, int MOD>
-struct Hash {
+struct ash {
     int n;
     vector<int> hash_, rev_, p, rev_p;
-    Hash(string s) {
+    hash(string s) {
         n = s.size();
         hash_.resize(n);
         rev_.resize(n);
