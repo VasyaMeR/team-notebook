@@ -14,7 +14,7 @@ template<typename T>
 using graph = std::vector<std::vector<T>>;
 
 std::vector<std::pair<int, int>> find_bridges(int n, graph<int> g) {
-    std::vector<bool> used(n), tin(n), fup(n);
+    std::vector<int> used(n), tin(n), fup(n);
     int T = 0;
     std::vector<std::pair<int, int>> edges;
     std::function<void(int, int)> dfs = [&](int v, int p = -1) {
