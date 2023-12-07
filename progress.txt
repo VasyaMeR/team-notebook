@@ -9,7 +9,7 @@ data structures:
 		- 2d  🆘
 	- li-chao tree 🆘
 	- xor-bor 🆘
-	- sparse table
+	- sparse table 🆘
 math:
 	- convolutions:
 		- fft (atcoder) 🆘
