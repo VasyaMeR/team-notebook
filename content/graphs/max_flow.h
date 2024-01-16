@@ -1,3 +1,4 @@
+
 /**
  * Author: AtCoder
  * Date: 2023-12-04
@@ -12,6 +13,7 @@
 #include <cassert>
 #include <limits>
 #include <queue>
+#include <deque>
 #include <vector>
 
 template <class Cap> struct mf_graph {
@@ -72,21 +74,21 @@ template <class Cap> struct mf_graph {
         assert(s != t);
 
         std::vector<int> level(_n), iter(_n);
-        std::queue<int> que;
+        std::deque<int> que;
 
         auto bfs = [&]() {
             std::fill(level.begin(), level.end(), -1);
             level[s] = 0;
             que.clear();
-            que.push(s);
+            que.push_back(s);
             while (!que.empty()) {
                 int v = que.front();
-                que.pop();
+                que.pop_front();
                 for (auto e : g[v]) {
                     if (e.cap == 0 || level[e.to] >= 0) continue;
                     level[e.to] = level[v] + 1;
                     if (e.to == t) return;
-                    que.push(e.to);
+                    que.push_back(e.to);
                 }
             }
         };
@@ -123,16 +125,16 @@ template <class Cap> struct mf_graph {
 
     std::vector<bool> min_cut(int s) {
         std::vector<bool> visited(_n);
-		std::queue<int> que;
-        que.push(s);
+		std::deque<int> que;
+        que.push_back(s);
         while (!que.empty()) {
             int p = que.front();
-            que.pop();
+            que.pop_front();
             visited[p] = true;
             for (auto e : g[p]) {
                 if (e.cap && !visited[e.to]) {
                     visited[e.to] = true;
-                    que.push(e.to);
+                    que.push_back(e.to);
                 }
             }
         }
