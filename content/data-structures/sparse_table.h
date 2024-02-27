@@ -20,7 +20,7 @@ struct sparse_table {
     int n;
     
     sparse_table(int n, const vector<T>& a): n(n) {
-        lg.resize(n + 1)
+        lg.resize(n + 1);
         lg[1] = 0;
         for (int i = 2; i <= n; i++)
             lg[i] = lg[i >> 1] + 1;
