@@ -48,11 +48,16 @@ struct eulerian_path
     {
         for(int i = 0;i < graph.size();i++)
         {
-            if(graph[i].size() % 2)
+            if(graph[i].size() % 2 or graph[i].size() == 0)
                 return {};
         }
         vector<int>cycle;
         dfs(v, cycle);
+        for(auto x:graph)
+        {
+            if(x.size())
+            return {};
+        }
         return cycle;
     }
 
