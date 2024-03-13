@@ -1,3 +1,4 @@
+
 /**
  * Author: Vasyl Merenych
  * Date: 2023-11-30
@@ -11,9 +12,6 @@
 #include <array>
 
 template<typename T> struct persistent_segment_tree {
-	static const int N = 1e5 + 100;
-	static const int M = 1e6 + 100;
-
 	struct node {
 		T sum;
 		int left, right;
@@ -21,14 +19,14 @@ template<typename T> struct persistent_segment_tree {
 		node(T val = T()): sum(val), left(-1), right(-1) {}
 		node(int left_, int right_): sum(T()), left(left_), right(right_) {}
 	};
-	std::array<node, M> tree;
+	std::vector<node> tree;
 
 	node create_node(T val = 0) {
 		return node(val);
 	}
 	node create_node(int left, int right) {
 		auto v = node(left, right);
-		v.sum = tree[left].sum + tree[right].sum;
+		v.sum = (left != -1 ? tree[left].sum : 0) + (right != -1 ? tree[right].sum : 0);
 		
 		return v;
 	}
@@ -38,17 +36,32 @@ template<typename T> struct persistent_segment_tree {
 		tree[++LAST] = create_node(args...);
 		return LAST;
 	}
-
-	void update(int pos, T val) {
-		update(1, 0, N, pos, val);
+	int n;
+	persistent_segment_tree(int n_, int sz_, const vector<T>& a, int& first_root): n(n_) {
+		tree.resize(sz_);
+		first_root = build(0, n, a);
 	}
 
-	node get(int l, int r) {
-		return get(1, 0, N, l, r);
+	int build(int l, int r, const vector<T>& a) {
+		if (l + 1 == r) {
+			return new_node(a[l]);
+		}
+		int mid = (r + l) / 2;
+		int left = build(l, mid, a);
+		int right = build(mid, r, a);
+		return new_node(left, right);
 	}
 
-	node get(int pos) {
-		return get(1, 0, N, pos, pos + 1);
+	int update(int root, int pos, T val) {
+		return update(root, 0, n, pos, val);
+	}
+
+	T get(int root, int l, int r) {
+		return get(root, 0, n, l, r);
+	}
+
+	T get(int root, int pos) {
+		return get(root, 0, n, pos, pos + 1);
 	}
 
 	int update(int v, int l, int r, int pos, T val) {
@@ -70,17 +83,14 @@ template<typename T> struct persistent_segment_tree {
 		}
 	}
 
-	node get(int v, int tl, int tr, int l, int r) {
-		if (l <= tl && tr <= r) {
-			return tree[v];
-		}
+	T get(int v, int tl, int tr, int l, int r) {
 		if (tr <= l || r <= tl)
 			return 0;
+		if (l <= tl && tr <= r) {
+			return tree[v].sum;
+		}
 
 		int mid = (tl + tr) / 2;
-		return node {
-			.sum = get(tree[v].left, tl, mid, l, r).sum + 
-				get(tree[v].right, mid, tr, l, r).sum
-		};
+		return get(tree[v].left, tl, mid, l, r) + get(tree[v].right, mid, tr, l, r);
 	}
 };
