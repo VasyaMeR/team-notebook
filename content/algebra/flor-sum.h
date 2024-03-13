@@ -3,7 +3,7 @@
  * Date: 2022-12-04
  * License: CC0
  * Source: AtCoder
- * Description: sum_{i=0}^{n-1} floor((ai + b) / m) (mod 2^64)
+ * Description: $$sum_{i=0}^{n-1}$$ floor((ai + b) / m) (mod 2^64)
  * Time: log(n)
  * Status: -
  */

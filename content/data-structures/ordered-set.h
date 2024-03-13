@@ -1,11 +1,11 @@
 /**
- * Author: Vasya Merenych
+ * Author: Vasyl Merenych
  * Date: 2024-03-13
  * License: CC0
- * Source: Codeforces
- * Description: A red-black tree with the ability to get an element by index (find_by_order) and index of a specific element (order_of_key).
+ * Source: folklore
+ * Description: A red-black tree with the ability to get an element by index (find\_by\_order) and index of a specific element (order\_of\_key)
  * Time: get - O(\log N), segment tree is 2 times faster
- * Status: Tested
+ * Status: -
  */
 
 #include <ext/pb_ds/assoc_container.hpp>
