@@ -10,6 +10,7 @@
 
 
 #include <vector>
+#include <functional>
 template<typename T>
 using graph = std::vector<std::vector<T>>;
 
@@ -24,10 +25,10 @@ std::vector<std::pair<int, int>> find_bridges(int n, graph<int> g) {
             if (to == p)
                 continue;
             if (used[to]) {
-                fup[v] = min(fup[v], tin[to]);
+                fup[v] = std::min(fup[v], tin[to]);
             } else {
                 dfs(to, v);
-                fup[v] = min(fup[v], fup[to]);
+                fup[v] = std::min(fup[v], fup[to]);
                 if (fup[to] ==  tin[to]) {
                     edges.push_back({v, to});
                 }
