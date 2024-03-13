@@ -3,8 +3,8 @@
  * Date: 2024-03-13
  * License: CC0
  * Source: Codeforces
- * Description: A red-black tree with the ability to get an element by index (find_by_order) and index of a specific element (order_of_key).
- * Time: get - O(\log N), segment tree is 2 times faster
+ * Description: Rope data structure
+ * Time: all get queries O(\log N)
  * Status: Tested
  */
 
