@@ -24,7 +24,7 @@ struct trie {
 	int sz = 0;
 	int root = 0;
 
-	bor() {
+	trie() {
 		root = sz++;
 	}
 
