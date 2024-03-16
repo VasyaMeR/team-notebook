@@ -1,7 +1,12 @@
-/*
-  For given n element of sequence, finds it`s shortest linear reccurence
-  return array c, st a_i = sum(j = 1 ... |c|) a_{i-j} * c[j]
-*/
+/**
+ * Author: Sashko123
+ * Date: 2024-03-16
+ * License: CC0
+ * Source: folklore
+ * Description: For given n first elements of sequence a, return array c, s.t. a_i = sum(j = 1 ... |c|) a_{i-j} * c[j])
+ * Time: O(n^2)
+ * Status: -
+ */
 
 template<typename T>
 vector<T> berlekamp_massey(const vector<T> &s) {
