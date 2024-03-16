@@ -13,7 +13,6 @@
 #include <set>
 
 using namespace std;
-
 struct eulerian_path
 {
     vector<multiset<int>>graph;
@@ -48,7 +47,7 @@ struct eulerian_path
     {
         for(int i = 0;i < graph.size();i++)
         {
-            if(graph[i].size() % 2 or graph[i].size() == 0)
+            if(graph[i].size() % 2)
                 return {};
         }
         vector<int>cycle;
@@ -64,6 +63,7 @@ struct eulerian_path
     vector<int> find_path()
     {
         int st = -1, fi = -1;
+        int mx = 0;
         for(int i = 0;i < graph.size();i++)
         {
             if(graph[i].size() % 2)
@@ -76,12 +76,23 @@ struct eulerian_path
                 else
                     return {};
             }
+            if(graph[mx].size()<graph[i].size())mx = i;
         }
         if(fi == -1)
-        return {};
+        {
+            auto cycle = find_cycle(mx);
+            return cycle;
+        }
         graph[st].insert(fi);
         graph[fi].insert(st);
         auto cycle = find_cycle(st);
+        if(!cycle.size())
+        return {};
+        cycle.pop_back();
+        if(cycle[0]==st and cycle.back()==fi or cycle[0]==fi and cycle.back()==st)
+        {
+            return cycle;
+        }
         vector<int>path;
         for(int i=0;;i++)
         {
@@ -91,7 +102,7 @@ struct eulerian_path
                 {
                     path.push_back(cycle[j]);
                 }
-                for(int j = 0;j < i;j++)
+                for(int j = 0;j <= i;j++)
                 {
                     path.push_back(cycle[j]);
                 }
