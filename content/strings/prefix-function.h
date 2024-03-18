@@ -3,10 +3,11 @@
  * Date: 2024-03-16
  * License: CC0
  * Source: folklore
- * Description:  The prefix function for this string is defined as an array  p  of length  n , where  p[i]  is the length of the longest proper prefix of the substring  s[0...i]  which is also a suffix of this substring.
+ * Description: The prefix function for this string is defined as an array p of length n, where p[i] is the length of the longest valid prefix of the substring s[0...i], which is also a suffix of this substring.
  * Time: O(N), N - size of string s
  * Status: -
  */
+
 
 vector<int> prefix_function(string s) {
     int n = (int)s.length();

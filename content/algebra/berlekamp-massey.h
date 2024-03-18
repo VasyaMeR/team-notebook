@@ -3,7 +3,7 @@
  * Date: 2024-03-16
  * License: CC0
  * Source: folklore
- * Description: For given n first elements of sequence a, return array c, s.t. a_i = sum(j = 1 ... |c|) a_{i-j} * c[j])
+ * Description: For given n first elements of sequence a, return array c, a[i] = sum(j = 1 ... |c|) a[i-j] * c[j])
  * Time: O(n^2)
  * Status: -
  */
