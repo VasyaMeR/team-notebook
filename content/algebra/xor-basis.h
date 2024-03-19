@@ -4,7 +4,7 @@
  * License: CC0
  * Source: folklore
  * Description: Xor basis, all elements in the main set can be constructed using xor operation and elements in the basis 
- * Time: insert per element - O(log(A_max)) 
+ * Time: insert per element - O(log(A_{max})) 
  * Status: -
  */
 
