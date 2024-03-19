@@ -4,7 +4,7 @@
  * License: CC0
  * Source: folklore
  * Description: Finds faces of planar graph. Rreturns a vector of vertices for each face, outer face goes first. Inner faces are returned in counter-clockwise orders and the outer face is returned in clockwise order.
- * Time: O(n log(n))
+ * Time: O(n * \log(n))
  * Status: -
  */
 

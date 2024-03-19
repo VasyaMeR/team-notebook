@@ -4,7 +4,7 @@
  * License: CC0
  * Source: folklore
  * Description: Polynomial hashes for strings
- * Time: O(n * log(M)), n - size of string s, m - module
+ * Time: O(n * log(m)), n - size of string s, m - module
  * Status: -
  */
 

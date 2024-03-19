@@ -3,7 +3,7 @@
  * Date: 2024-01-10
  * License: CC0
  * Source: folklore
- * Description: geometry formuls
+ * Description: Geometry formuls
  * Time: 
  * Status: -
  */

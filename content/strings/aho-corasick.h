@@ -3,8 +3,8 @@
  * Date: 2024-03-18
  * License: CC0
  * Source: cp-algorithms
- * Description: creates suffix automaton
- * Time: O(|alphabet| * |sum of length of strings|)
+ * Description: Creates suffix automaton
+ * Time: O(|alphabet| * \sum |s_i|)
  * Status: -
  */
 

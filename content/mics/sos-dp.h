@@ -4,7 +4,7 @@
  * License: CC0
  * Source: folklore
  * Description: Sum over submasks 
- * Time: O(n * 2 * n)
+ * Time: O(n * 2 ^ n)
  * Status: -
  */
 

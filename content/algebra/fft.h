@@ -4,7 +4,7 @@
  * License: CC0
  * Source: folklore
  * Description: FFT implementation
- * Time: (n + m) * log(n + m) 
+ * Time: O((n + m) * \log(n + m))
  * Status: -
  */
 

@@ -4,7 +4,7 @@
  * License: CC0
  * Source: folklore
  * Description: NNT implementation by modulo 998244353
- * Time: (n + m) * log(n + m) 
+ * Time: O((n + m) * \log(n + m))
  * Status: -
  */
 

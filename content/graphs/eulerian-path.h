@@ -4,7 +4,7 @@
  * License: CC0
  * Source: folklore
  * Description: Finds eulerian path and cycle for undirected graph
- * Time: O(m * log m) 
+ * Time: O(m * \log(m)) 
  * Status: -
  */
 

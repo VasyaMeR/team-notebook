@@ -4,7 +4,7 @@
  * License: CC0
  * Source: library-checker
  * Description: for given n finds  all a, s.t. a*a = n (mod p) 
- * Time: O(log^2)
+ * Time: O(log^2(p))
  * Status: -
  */
 

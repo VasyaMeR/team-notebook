@@ -4,7 +4,7 @@
  * License: CC0
  * Source: https://github.com/kth-competitive-programming/kactl/blob/main/content/graph/DirectedMST.h
  * Description: finds directed mst from given root
- * Time: O(|E| * log |V|)
+ * Time: O(n * \log(m))
  * Status: -
  */
 

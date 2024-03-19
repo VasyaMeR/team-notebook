@@ -4,7 +4,7 @@
  * License: CC0
  * Source: folklore
  * Description: Find x and y, s.t. x*a + y*b = gcd(a, b) // extended Euclidean algorithm
- * Time: O(log min(a, b)) 
+ * Time: O(\log(min(a, b))) 
  * Status: -
  */
 

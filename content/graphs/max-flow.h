@@ -5,7 +5,7 @@
  * License: CC0
  * Source: 
  * Description: Maximum flow problem
- * Time: O(min(n^(2/3) * m, m ^ (3 / 2))) - all capacities are 1, O(n^2, m) - general
+ * Time: O(min(n^{2/3} * m, m ^ {3 / 2})) - all capacities are 1, O(\min(n^2, m)) - general
  * Status: -
  */
 
