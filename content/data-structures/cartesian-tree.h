@@ -2,7 +2,7 @@
  * Author: Vasya Merenych
  * Date: 2024-03-13
  * License: CC0
- * Source: 
+ * Source: folklore
  * Description: Cartesian tree
  * Time: all get queries O(\log N)
  * Status: -
