@@ -3,8 +3,8 @@
  * Date: 2023-12-04
  * License: CC0
  * Source: cp-algorithms
- * Description: Finds divider of N.
- * Time: O(N ^ (1/4) * log(N))
+ * Description: Finds divider of n.
+ * Time: O(n ^ {1/4} * \log(n))
  * Status: -
  */
 

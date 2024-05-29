@@ -60,5 +60,3 @@ int primitive_root(int m) {
         if (ok) return g;
     }
 }
-
-template <int m> constexpr int primitive_root = primitive_root(m);

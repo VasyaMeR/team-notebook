@@ -3,15 +3,14 @@
  * Date: 2023-02-11
  * License: CC0
  * Source: folklore
- * Description: Li-Chao tree, online convex hull for maximizing f(x) = k * x + b
+ * Description: Li-Chao tree, online convex hull for maximizing f(x) = k * x + b, for minimization use (-k) * x + (-b)
  * Time: add - O(\log N), get - O(\log N)
  * Status: -
  */
 
 template<typename T> struct li_chao_tree {
-	const T MX = 1e9 + 100;
-	struct line
-	{
+	const T MX = 1e9 + 1;
+	struct line {
 		T k = 0;
 		T b = -INF;
 
@@ -19,8 +18,7 @@ template<typename T> struct li_chao_tree {
 			return k * x + b;
 		}
 	};
-	struct node
-	{
+	struct node {
 		line ln;
 		node* left = nullptr;
 		node* right = nullptr;
@@ -41,14 +39,14 @@ template<typename T> struct li_chao_tree {
 	node* root = new_node();
 
 	T get(T x) {
-		return get(root, 0, MX, x);
+		return get(root, -MX, MX, x);
 	}
     void add(line ln) {
-        return add(root, 0, MX, ln);
+        add(root, -MX, MX, ln);
     }
 
 	T get(node*& v, T l, T r, T x) {
-		if (!v) {
+		if (!v || l > r) {
 			return -INF;
 		}
 		T ans = v->ln.f(x);
@@ -64,10 +62,12 @@ template<typename T> struct li_chao_tree {
 	}
 
     void add(node*& v, T l, T r, line ln) {
+		if (l > r)
+			return;
         if (!v) {
             v = new_node();
         }
-        T m = (r + l) / 2;
+		T m = (r + l) / 2;
         bool left = v->ln.f(l) < ln.f(l);
 		bool md = v->ln.f(m) < ln.f(m);
         if (md)

@@ -2,7 +2,8 @@
  * Author: Vasyl Merenych
  * Date: 2023-12-07
  * License: CC0
- * Source: Largest common prefix of substrings. Given a string s of length n, it returns the LCP array of s. Here, the LCP array of s is the array of length n−1, such that the i-th element is the length of the LCP (Longest Common Prefix) of s[sa[i]..n) and s[sa[i+1]..n).
+ * Source: folklore
+ * Description: Largest common prefix of substrings. Given a string s of length n, it returns the LCP array of s. Here, the LCP array of s is the array of length n-1, such that the i-th element is the length of the LCP (Longest Common Prefix) of s[sa[i]..n) and s[sa[i+1]..n).
  * Time: O(N), N - size of string s
  * Status: -
  */

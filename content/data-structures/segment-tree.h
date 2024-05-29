@@ -10,16 +10,15 @@
 
 #include <array>
 
-template<typename T> struct segment_tree {
-	static const int N = (1 << 18);
+template<typename T, int N = (1 << 18)> struct segment_tree {
 	std::array<T, 2 * N> tree;
-	SegmentTree() {
+	segment_tree() {
 		tree.fill(T());
 	}
 
 	void update(int pos, T val) {
 		pos += N;
-		tree[pos] = val;
+		tree[pos] += val;
 		pos >>= 1;
 		while (pos > 0) {
 			tree[pos] = tree[pos << 1] + tree[(pos << 1) | 1];
@@ -27,11 +26,11 @@ template<typename T> struct segment_tree {
 		}
 	}
 
-	T get_sum(T l, T r) {
+	T get_sum(int l, int r) {
 		l += N;
 		r += N;
 
-		T ans = 0;
+		T ans = T();
 		while (l < r) {
 			if (l & 1) {
 				ans += tree[l++];
@@ -43,5 +42,9 @@ template<typename T> struct segment_tree {
 			r >>= 1;
 		}
 		return ans;
+	}
+
+	T get(int pos) {
+		return tree[N + pos];
 	}
 };

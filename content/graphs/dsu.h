@@ -4,7 +4,7 @@
  * License: CC0
  * Source: AtCoder
  * Description: Disjoint Set Union
- * Time: O(α(n)) time (amortized) by sizes
+ * Time: O(n) time (amortized) by sizes
  * Status: -
  */
 

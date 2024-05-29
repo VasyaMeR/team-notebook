@@ -21,15 +21,9 @@
 #include <deque>
 #include <cmath>
 #include <climits>
-// #include <ext/pb_ds/assoc_container.hpp> 
-// #include <ext/pb_ds/tree_policy.hpp>
-// #include <ext/rope>
- 
-// using namespace __gnu_pbds;
-// using namespace __gnu_cxx;
+
 using namespace std;
- 
- 
+  
 const int MOD = 998244353;
 const long double PI = 3.141592653589793;
 using ll = long long;
@@ -57,13 +51,6 @@ int input()
 
 // ----------> end of sashko123`s defines (thank you Vasya <3)
 
-
-// template<typename T>
-// using ordered_set = tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
- 
-// template<typename K, typename V>
-// using hash_table = cc_hash_table<K, V, hash<K>>;
- 
 template<typename T>
 using graph = vector<vector<T>>;
  
@@ -73,14 +60,6 @@ istream& operator>>(istream& in, vector<T>& a) {
         in >> i;
     }
     return in;
-}
- 
-template<typename T>
-ostream& operator<<(ostream& out, vector<T>& a) {
-    for (auto& i: a) {
-        out << i << " ";
-    }
-    return out;
 }
  
 ll fast_pow(ll a, ll b, ll mod) {

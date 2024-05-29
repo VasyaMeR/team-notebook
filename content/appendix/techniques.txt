@@ -59,6 +59,8 @@ Dynamic programming
 	Divide and conquer
 	Knuth optimization
 	Convex hull optimizations
+	Slope trick
+	Aliens trick
 	RMQ (sparse table a.k.a 2^k-jumps)
 	Bitonic cycle
 	Log partitioning (loop over most restricted)

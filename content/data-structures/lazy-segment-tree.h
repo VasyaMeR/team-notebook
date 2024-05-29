@@ -9,38 +9,57 @@
  */
 
 #include <array>
-
+#include <vector>
 template<typename T> struct lazy_segment_tree {
-	static const int N = 1e5 + 100;
-	static const T NONE = 0;
-
 	struct node{
 		T sum = 0;
-		T promise = NONE;
+		T promise = 0;
 	};
-	std::array<node, 4 * N> tree; 
 
-	void update(int l, int r, T val) {
-		update(1, 0, N, l, r, val);
+	int n;
+	std::vector<node> tree; 
+
+	lazy_segment_tree(int n_, const vector<T>& init): n(n_) {
+		tree.assign(4 * n, node{});
+		build(1, 0, n, init);
 	}
 
-	node get(int l, int r) {
-		return get(1, 0, N, l, r);
+	void build(int v, int l, int r, const vector<T>& init) {
+		if (l + 1 == r) {
+			tree[v].sum = init[l];
+			return;
+		}
+		if (l >= r)
+			return;
+		int mid = (l + r) / 2;
+		build(2 * v, l, mid, init);
+		build(2 * v + 1, mid, r, init);
+
+		tree[v].sum = (tree[2 * v].sum + tree[2 * v + 1].sum);
 	}
 
-	node get(int pos) {
-		return get(1, 0, N, pos, pos + 1);
+	void update(int l, int r, T value) {
+		update(1, 0, n, l, r, value);
+	}
+
+	T get(int l, int r) {
+		return get(1, 0, n, l, r);
+	}
+
+	T get(int pos) {
+		return get(1, 0, n, pos, pos + 1);
 	}
 
 	void push(int v, int l, int r) {
-		if (tree[v].promise == NONE)
+		if (tree[v].promise == 0)
 			return;
+		
 		tree[v].sum += tree[v].promise * (r - l);
-		if (l != r) {
+		if (l + 1 < r) {
 			tree[2 * v].promise += tree[v].promise;
-			tree[2 * v + 1].promise += tree[v].promise;	
+			tree[2 * v + 1].promise += tree[v].promise;
 		}
-		tree[v].promise = NONE;
+		tree[v].promise = 0;
 	}
 
 	void update(int v, int tl, int tr, int l, int r, T value) {
@@ -48,7 +67,7 @@ template<typename T> struct lazy_segment_tree {
 		if (l >= tr || tl >= r)
 			return;
 		if (l <= tl && tr <= r) {
-			tree[v].promise = value;
+			tree[v].promise += value;
 			push(v, tl, tr);
 			return;
 		}
@@ -56,23 +75,20 @@ template<typename T> struct lazy_segment_tree {
 		update(2 * v, tl, mid, l, r, value);
 		update(2 * v + 1, mid, tr, l, r, value);
 
-		tree[v].sum = (tree[2 * v].sum + tree[2 * v + 1].sum);
+		tree[v].sum = tree[2 * v].sum + tree[2 * v + 1].sum;
 	}
 
-	node get(int v, int tl, int tr, int l, int r) {
+	T get(int v, int tl, int tr, int l, int r) {
 		push(v, tl, tr);
 		if (l >= tr || tl >= r)
-			return node();
+			return 0;
 		if (l <= tl && tr <= r) {
-			return tree[v];
+			return tree[v].sum;
 		}
 		int mid = (tl + tr) / 2;
 		auto left = get(2 * v, tl, mid, l, r);
 		auto right = get(2 * v + 1, mid, tr, l, r);
 
-		return node {
-			.sum = (left.sum + right.sum),
-			.promise = NONE
-		};
+		return left + right;
 	}
 };

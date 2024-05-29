@@ -4,10 +4,9 @@
  * License: CC0
  * Source: folklore
  * Description: Xor basis, all elements in the main set can be constructed using xor operation and elements in the basis 
- * Time: insert per element - O(log(A_max)) 
+ * Time: insert per element - O(log(A_{max})) 
  * Status: -
  */
-
 
 #include <vector>
 
@@ -23,7 +22,7 @@ struct xor_basis
 
 	bool insert(T val) {
 		for (int i = 0; i < max_bit; i++) {
-			if ((val >> i)&1) == 0)
+			if (((val >> i)&1) == 0)
 				continue;
 			if (!basis[i]) {
 				basis[i] = val;
@@ -37,7 +36,7 @@ struct xor_basis
 
 	bool contains(T val) {
 		for (int i = 0; i < max_bit; i++) {
-			if ((val >> i)&1) == 0)
+			if (((val >> i)&1) == 0)
 				continue;
 			if (!basis[i]) {
 				return false;

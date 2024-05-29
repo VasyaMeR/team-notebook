@@ -1,9 +1,18 @@
+/**
+ * Author: Vasyl Merenych
+ * Date: 2024-03-16
+ * License: CC0
+ * Source: folklore
+ * Description: Polynomial hashes for strings
+ * Time: O(n * log(m)), n - size of string s, m - module
+ * Status: -
+ */
 
 template<int P, int MOD>
-struct ash {
+struct hash_st {
     int n;
     vector<int> hash_, rev_, p, rev_p;
-    hash(string s) {
+    hash_st(string s) {
         n = s.size();
         hash_.resize(n);
         rev_.resize(n);
@@ -30,6 +39,7 @@ struct ash {
     }
 
     int get(int l, int r) {
+        r--;
         if (l == 0)
             return hash_[r];
         int x = (MOD + hash_[r] - hash_[l - 1]) % MOD;
@@ -37,6 +47,7 @@ struct ash {
     }
 
     int get_rev(int l, int r) {
+        r--;
         if (r == n - 1)
             return rev_[l];
         int x = (MOD + rev_[l] - rev_[r + 1]) % MOD;
