@@ -4,6 +4,7 @@
  * License: CC0
  * Source: folklore
  * Description: Calculate the proper edge coloring which gives the edge chromatic number on biparty graph. Returns colors from 1 to $D$, where $D = \max degree[v]$. $N$ - number of verices, $M$ - max degree.
+ * Сan be done for bipartite graphs by repeated matchings of max-degree nodes.
  * Time: O(n * m)
  * Status: -
  */
