@@ -3,7 +3,7 @@
  * Date: 2023-01-20
  * License: CC0
  * Source: folklore
- * Description: Fast pair matching algorithm. To find the minimum vertex cover start dfs from each vertice in the left that is not in maximum matching, from the left side choce unvisited vertices and from right chose visited.
+ * Description: Fast pair matching algorithm. To get some specific order sort the vertices of the left part. To find the minimum vertex cover start dfs from each vertice in the left that is not in maximum matching, from the left side choce unvisited vertices and from right chose visited.
  * Time: O(n * (n + m))
  * Status: -
  */
