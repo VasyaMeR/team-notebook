@@ -3,7 +3,7 @@
  * Date: 2024-03-19
  * License: CC0
  * Source: folklore
- * Description: Single source shortest path with negative weight edges in dirceted graph
+ * Description: Single source shortest path with negative weight edges in directed graph.
  * Time: O(n * m) 
  * Status: -
  */
